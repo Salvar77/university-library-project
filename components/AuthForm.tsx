@@ -74,14 +74,12 @@ const AuthForm = <T extends FieldValues>({
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold text-white">
-        {isSignIn
-          ? "Witamy z powrotem w BookWise"
-          : "Stwórz swoje konto biblioteczne"}
+        {isSignIn ? "Welcome back to BookWise" : "Create your library account"}
       </h1>
       <p className="text-light-100">
         {isSignIn
-          ? "Uzyskaj dostęp do ogromnej kolekcji zasobów i bądź na bieżąco"
-          : "Proszę wypełnić wszystkie pola i przesłać ważny identyfikator uczelni, aby uzyskać dostęp do biblioteki"}
+          ? "Gain access to a vast collection of resources and stay up to date"
+          : "Please fill in all fields and submit a valid university ID to access the library"}
       </p>
       <Form {...form}>
         <form
