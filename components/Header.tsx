@@ -1,15 +1,14 @@
-"use client";
-import getInitials, { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import React from "react";
 import Image from "next/image";
-import { Avatar, AvatarFallback } from "./ui/avatar";
-import { Session } from "next-auth";
+// import { Avatar, AvatarFallback } from "./ui/avatar";
 
-const Header = ({ session }: { session: Session }) => {
-  const pathname = usePathname();
+import { Button } from "./ui/button";
+import { signOut } from "@/auth";
 
+const Header = () => {
   return (
     <header className="my-10 flex justify-between gap-5">
       <Link href="/">
@@ -18,24 +17,22 @@ const Header = ({ session }: { session: Session }) => {
 
       <ul className="flex flex-row items-center gap-8">
         <li>
-          <Link
-            href="/library"
-            className={cn(
-              "text-base cursor-pointer capitalize",
-              pathname === "/library" ? "text-light-200" : "text-light-100"
-            )}
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+            }}
+            className="mb-10"
           >
-            Biblioteka
-          </Link>
-        </li>
-        <li>
-          <Link href="/my-profile">
+            <Button>Wyloguj</Button>
+          </form>
+          {/* <Link href="/my-profile">
             <Avatar>
               <AvatarFallback>
                 {getInitials(session?.user?.name || "Luk")}
               </AvatarFallback>
             </Avatar>
-          </Link>
+          </Link> */}
         </li>
       </ul>
     </header>
