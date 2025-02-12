@@ -72,7 +72,7 @@ const BookOverview = async ({
         {user && (
           <BorrowBook
             bookId={id}
-            user={userId}
+            userId={userId}
             borrowingEligibility={borrowingEligibility}
           />
         )}
