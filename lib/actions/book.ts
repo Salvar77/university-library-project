@@ -1,10 +1,10 @@
 "use server";
-
+import dayjs from "dayjs";
 import { db } from "@/database/drizzle";
 import { books, borrowRecords } from "@/database/schema";
 import { eq } from "drizzle-orm";
 
-export const borrowBook = async (params: BorrowBookParams) => {
+export const borrowBook = async (params) => {
   const { userId, bookId } = params;
 
   try {
@@ -21,14 +21,23 @@ export const borrowBook = async (params: BorrowBookParams) => {
       };
     }
 
-    const dueDate = dayjs().add(7, "day").toDate().toDateString();
+    const dueDate = dayjs().add(7, "day").format("YYYY-MM-DD");
 
-    const record = db.insert(borrowRecords).values({
-      userId,
-      bookId,
-      dueDate,
-      status: "BORROWED",
-    });
+    const [record] = await db
+      .insert(borrowRecords)
+      .values({
+        userId,
+        bookId,
+        dueDate,
+        status: "BORROWED",
+      })
+      .returning({
+        id: borrowRecords.id,
+        userId: borrowRecords.userId,
+        bookId: borrowRecords.bookId,
+        dueDate: borrowRecords.dueDate,
+        status: borrowRecords.status,
+      });
 
     await db
       .update(books)
@@ -37,13 +46,13 @@ export const borrowBook = async (params: BorrowBookParams) => {
 
     return {
       success: true,
-      data: JSON.parse(JSON.stringify(record)),
+      data: record,
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return {
       success: false,
-      error: "An error occured while borrowing the book",
+      error: "An error occurred while borrowing the book",
     };
   }
 };
