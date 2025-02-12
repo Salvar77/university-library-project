@@ -127,18 +127,18 @@ const AuthForm = <T extends FieldValues>({
           ))}
 
           <Button type="submit" className="form-btn">
-            {isSignIn ? "Zaloguj się" : "Zarejestruj się"}
+            {isSignIn ? "Sign in" : "Sign up"}
           </Button>
         </form>
       </Form>
 
       <p className="text-center text-base font-medium">
-        {isSignIn ? "Nowy w BookWise?" : "Masz już konto?"}{" "}
+        {isSignIn ? "New in BookWise?" : "Already have an account?"}{" "}
         <Link
           href={isSignIn ? "/sign-up" : "/sign-in"}
           className="font-bold text-primary"
         >
-          {isSignIn ? "Stwórz konto" : "Zaloguj się"}
+          {isSignIn ? "Create account" : "Sign in"}
         </Link>
       </p>
     </div>
