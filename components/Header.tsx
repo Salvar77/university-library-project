@@ -24,7 +24,7 @@ const Header = () => {
             }}
             className="mb-10"
           >
-            <Button>Wyloguj</Button>
+            <Button>Log out</Button>
           </form>
           {/* <Link href="/my-profile">
             <Avatar>

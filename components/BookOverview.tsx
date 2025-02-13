@@ -45,10 +45,10 @@ const BookOverview = async ({
 
         <div className="book-info">
           <p>
-            Przez <span className="font-semibold text-light-200">{author}</span>
+            By <span className="font-semibold text-light-200">{author}</span>
           </p>
           <p>
-            Kategoria:{" "}
+            Category:{" "}
             <span className="font-semibold text-light-200">{genre}</span>
           </p>
 
@@ -60,10 +60,10 @@ const BookOverview = async ({
 
         <div className="book-copies">
           <p>
-            Wszystkie książki: <span>{totalCopies}</span>
+            All Books: <span>{totalCopies}</span>
           </p>
           <p>
-            Ilość dostępnych książek: <span>{availableCopies}</span>
+            Available books: <span>{availableCopies}</span>
           </p>
         </div>
 
